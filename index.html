@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pak Jobs - Official Employment Portal</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <link rel="stylesheet" href="https://cloudflare.com">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background-color: #060c21;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+        
+        /* Navbar */
+        .navbar {
+            background-color: #001133;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid #f59e0b;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #f59e0b;
+        }
+        .nav-btn {
+            background-color: #f59e0b;
+            color: #001133;
+            padding: 8px 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        /* Hero & Search */
+        .hero {
+            background: linear-gradient(rgba(0, 17, 51, 0.9), rgba(6, 12, 33, 0.95));
+            padding: 40px 15px;
+            text-align: center;
+        }
+        .hero h1 { font-size: 28px; margin-bottom: 10px; }
+        .hero h1 span { color: #f59e0b; }
+        
+        .search-box {
+            background: #001133;
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid #f59e0b;
+            margin-top: 15px;
+        }
+        .search-box input, .search-box select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            background: #060c21;
+            color: white;
+            border: 1px solid #1e293b;
+        }
+        .search-box button {
+            width: 100%;
+            background: #f59e0b;
+            color: #001133;
+            padding: 14px;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 700;
+            border: none;
+        }
+
+        /* Ads */
+        .ad-banner {
+            background: #111e38;
+            border: 2px dashed #f59e0b;
+            margin: 20px 15px;
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px;
+            color: #94a3b8;
+        }
+        .ad-banner span { color: #f59e0b; display: block; margin-bottom: 5px; }
+
+        /* Sections */
+        .section-title {
+            font-size: 20px;
+            margin: 25px 15px 12px;
+            color: #f59e0b;
+            border-left: 5px solid #f59e0b;
+            padding-left: 8px;
+        }
+
+        /* Job Categories Grid */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            padding: 0 15px;
+        }
+        .cat-card {
+            background: #001133;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #1e293b;
+        }
+        .cat-card i { font-size: 24px; color: #f59e0b; margin-bottom: 8px; }
+
+        /* Job Cards */
+        .job-container { padding: 0 15px; }
+        .job-card {
+            background: #001133;
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border-left: 6px solid #10b981;
+        }
+        .job-card.gov { border-left-color: #ef4444; }
+        .job-card h3 { font-size: 17px; margin-bottom: 6px; }
+        .company { color: #f59e0b; font-size: 14px; margin-bottom: 12px; }
+        .apply-btn {
+            display: block;
+            background: #f59e0b;
+            color: #001133;
+            text-align: center;
+            padding: 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        /* Contact & Helpline Feature (باکس کی جگہ براہِ راست لنک) */
+        .helpline-box {
+            background: #001133;
+            margin: 20px 15px;
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid #25d366;
+            text-align: center;
+        }
+        .helpline-box h3 { color: #25d366; margin-bottom: 10px; }
+        .hl-btn {
+            display: inline-block;
+            background: #25d366;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+
+        footer {
+            background: #001133;
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 40px;
+            border-top: 2px solid #f59e0b;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="logo">Pak Jobs</div>
+        <a href="#" class="nav-btn">Login / Register</a>
+    </div>
+
+    <div class="hero">
+        <h1>All Pakistan <span>Job Portal</span></h1>
+        <p>Official School, Government & Private Openings</p>
+        
+        <div class="search-box">
+            <input type="text" placeholder="Type Job Title (e.g. Teacher, Clerk)">
+            <select>
+                <option>-- Select Your City --</option>
+                <option>Lahore</option><option>Karachi</option><option>Islamabad</option>
+                <option>Faisalabad</option><option>Rawalpindi</option><option>Multan</option>
+                <option>Toba Tek Singh</option><option>Peshawar</option><option>Quetta</option>
+            </select>
+            <button type="button">Search Now</button>
+        </div>
+    </div>
+
+    <!-- Commercial Ads -->
+    <div class="ad-banner">
+        <span>Google AdSense Space</span>
+        Earnings Ads Banner Area
+    </div>
+
+    <!-- Official Categories Grid -->
+    <h2 class="section-title">Job Sectors</h2>
+    <div class="categories-grid">
+        <div class="cat-card"><i class="fa-solid fa-graduation-cap"></i><h5>School Teaching</h5></div>
+        <div class="cat-card"><i class="fa-solid fa-building"></i><h5>Government</h5></div>
+        <div class="cat-card"><i class="fa-solid fa-laptop-code"></i><h5>IT & Computer</h5></div>
+        <div class="cat-card"><i class="fa-solid fa-user-tie"></i><h5>Private Jobs</h5></div>
+    </div>
+
+    <!-- Real-time Job Postings -->
+    <h2 class="section-title">Latest Available Openings</h2>
+    <div class="job-container">
+        <div class="job-card">
+            <h3>Female English School Teacher</h3>
+            <div class="company">Allied School Campus</div>
+            <a href="https://wa.me" class="apply-btn" target="_blank">Apply via WhatsApp</a>
+        </div>
+
+        <div class="job-card gov">
+            <h3>Junior Clerk (Scale-11)</h3>
+            <div class="company">Education Department Punjab</div>
+            <a href="https://wa.me" class="apply-btn" target="_blank">Apply via WhatsApp</a>
+        </div>
+    </div>
+
+    <!-- Official Helpline Integration -->
+    <h2 class="section-title">Official Helpline</h2>
+    <div class="helpline-box">
+        <h3>Need Help or Post a Job?</h3>
+        <p>Click below to chat directly with our official support team</p>
+        <a href="https://wa.me" class="hl-btn" target="_blank"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Pak Jobs Portal. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
+Singh</option><option>Jhang</option><option>Sheikhupura</option>
+                <option>Gujrat</option><option>Okara</option><option>Kasur</option>
+                <option>Dera Ghazi Khan</option><option>Rahim Yar Khan</option><option>Chiniot</option>
+                <!-- Sindh -->
+                <option>Karachi</option><option>Hyderabad</option><option>Sukkur</option>
+                <option>Larkana</option><option>Nawabshah</option><option>Mirpurkhas</option>
+                <option>Jacobabad</option><option>Shikarpur</option>
+                <!-- KPK -->
+                <option>Peshawar</option><option>Mardan</option><option>Abbottabad</option>
+                <option>Mingora</option><option>Kohat</option><option>Dera Ismail Khan</option>
+                <option>Swat</option><option>Mansehra</option>
+                <!-- Balochistan -->
+                <option>Quetta</option><option>Gwadar</option><option>Khuzdar</option>
+                <option>Turbat</option><option>Sibi</option><option>Chaman</option>
+                <!-- Azad Kashmir & Gilgit -->
+                <option>Muzaffarabad</option><option>Mirpur (AJK)</option><option>Rawalakot</option>
+                <option>Gilgit</option><option>Skardu</option>
+            </select>
+            
+            <button type="button"><i class="fa-solid fa-magnifying-glass"></i> Search Now</button>
+        </div>
+    </div>
+
+    <!-- Commercial Ads Container Block -->
+    <div class="ad-banner">
+        <span><i class="fa-solid fa-rectangle-ad"></i> Google AdSense Earning Space</span>
+        Your earning advertisements will appear here later (یہاں آپ کے پیسے کمانے والے اشتہار لگیں گے)
+    </div>
+
+    <!-- About Content Block -->
+    <h2 class="section-title">About Our Portal</h2>
+    <div class="about-section">
+        <p>Welcome to Pak Jobs. We provide daily fresh updates for School Teaching vacancies, Government department announcements, and Private enterprise careers across every single city of Pakistan. Our goal is to connect job seekers with employers instantly.</p>
+    </div>
+
+    <!-- Active Recruitment Cards Stream -->
+ <div class="meta">
